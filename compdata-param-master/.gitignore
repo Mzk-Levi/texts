@@ -1,0 +1,11 @@
+build
+dist
+dummy.cabal
+*~
+*\#
+*.orig
+*.o
+*.hi
+*.tix
+*.mix
+hpcreport

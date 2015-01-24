@@ -1,0 +1,106 @@
+Name:			compdata-param
+Version:		0.8.0.2
+Synopsis:            	Parametric Compositional Data Types
+Description:
+
+  Based on Wouter Swierstra's Functional Pearl /Data types a la carte/
+  (Journal of Functional Programming, 18(4):423-436, 2008,
+  <http://dx.doi.org/10.1017/S0956796808006758>), this package
+  provides a framework for defining recursive data types in a
+  compositional manner with support for binders. 
+  .
+  This package implemements /parametric compositional data types/
+  (Workshop on Mathematically Structured Functional Programming, 3-24,
+  2012, <http://dx.doi.org/10.4204/EPTCS.76.3>), generalising
+  compositional data types (as implemented in the /compdata/ package)
+  with support for parametric higher-order abstract syntax
+  (PHOAS).
+  .
+  Examples of using parametric compositional data types are bundled
+  with the package in the folder @examples@.
+
+Category:            	Generics
+License:		BSD3
+License-file:		LICENSE
+Author:			Patrick Bahr, Tom Hvitved
+Maintainer:		paba@di.ku.dk
+Build-Type:		Simple
+Cabal-Version:          >=1.9.2
+bug-reports:            https://github.com/pa-ba/compdata-param/issues
+
+extra-source-files:
+  -- test files
+  testsuite/tests/Tests.hs
+  testsuite/tests/Data/Comp/Examples_Test.hs
+  testsuite/tests/Data/Comp/Examples/*.hs
+  -- example files
+  examples/Examples/*.hs
+  examples/Examples/Multi/*.hs
+
+
+library
+  Exposed-Modules:      Data.Comp.Param
+                        Data.Comp.Param.Term
+                        Data.Comp.Param.FreshM
+                        Data.Comp.Param.Sum
+                        Data.Comp.Param.Difunctor
+                        Data.Comp.Param.Ditraversable
+                        Data.Comp.Param.Algebra
+                        Data.Comp.Param.Annotation
+                        Data.Comp.Param.Ops
+                        Data.Comp.Param.Equality
+                        Data.Comp.Param.Ordering
+                        Data.Comp.Param.Show
+                        Data.Comp.Param.Derive,
+                        Data.Comp.Param.Desugar
+                        Data.Comp.Param.Thunk
+
+                        Data.Comp.Param.Multi
+                        Data.Comp.Param.Multi.Term
+                        Data.Comp.Param.Multi.FreshM
+                        Data.Comp.Param.Multi.Sum
+                        Data.Comp.Param.Multi.HDifunctor
+                        Data.Comp.Param.Multi.HDitraversable
+                        Data.Comp.Param.Multi.Algebra
+                        Data.Comp.Param.Multi.Annotation
+                        Data.Comp.Param.Multi.Ops
+                        Data.Comp.Param.Multi.Equality
+                        Data.Comp.Param.Multi.Ordering
+                        Data.Comp.Param.Multi.Show
+                        Data.Comp.Param.Multi.Derive,
+                        Data.Comp.Param.Multi.Desugar
+
+  Other-Modules:        Data.Comp.Param.Derive.Difunctor
+                        Data.Comp.Param.Derive.Ditraversable
+                        Data.Comp.Param.Derive.Equality
+                        Data.Comp.Param.Derive.Ordering
+                        Data.Comp.Param.Derive.Show
+                        Data.Comp.Param.Derive.SmartConstructors
+                        Data.Comp.Param.Derive.SmartAConstructors
+                        Data.Comp.Param.Derive.Injections
+                        Data.Comp.Param.Derive.Projections
+
+                        Data.Comp.Param.Multi.Derive.HDifunctor
+                        Data.Comp.Param.Multi.Derive.Equality
+                        Data.Comp.Param.Multi.Derive.Ordering
+                        Data.Comp.Param.Multi.Derive.Show
+                        Data.Comp.Param.Multi.Derive.SmartConstructors
+                        Data.Comp.Param.Multi.Derive.SmartAConstructors
+                        Data.Comp.Param.Multi.Derive.Injections
+                        Data.Comp.Param.Multi.Derive.Projections
+
+  Build-Depends:	base >= 4.7, base < 5, template-haskell, mtl, transformers, compdata >= 0.8 && < 0.10
+  hs-source-dirs:	src
+  ghc-options:          -W
+
+
+Test-Suite test
+  Type:                 exitcode-stdio-1.0
+  Main-is:		Tests.hs
+  hs-source-dirs:	testsuite/tests examples
+  Build-Depends:        base >= 4.7, base < 5, template-haskell, mtl, transformers, compdata >= 0.8 && < 0.10, HUnit,
+                        test-framework, test-framework-hunit, containers, compdata-param
+
+source-repository head
+  type:     git
+  location: https://github.com/pa-ba/compdata-param

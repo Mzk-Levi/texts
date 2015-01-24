@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Usage: upload-doc compdata-param <version number> <username> <password>
+
+cabal haddock --hyperlink-source --html-location='http://hackage.haskell.org/package/$pkg/docs' --contents-location='http://hackage.haskell.org/package/$pkg'
+cd "dist/doc/html"
+DDIR="${1}-${2}-docs"
+cp -r "${1}" "${DDIR}" && tar -c -v -z -f "${DDIR}.tar.gz" "${DDIR}"
+CS=$?
+if [ "${CS}" -eq "0" ]; then
+    echo "Uploading to Hackage…"
+    curl -X PUT -H 'Content-Type: application/x-tar' -H 'Content-Encoding: gzip' --data-binary "@${DDIR}.tar.gz" "http://${3}:${4}@hackage.haskell.org/package/${1}-${2}/docs"
+    exit $?
+else
+    echo "Error when packaging the documentation"
+    exit $CS
+fi
